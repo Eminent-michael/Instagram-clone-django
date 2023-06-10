@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block banner %}
+<!-- header end -->
+<div class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 style="font-size: 90px;" class="title is-1">
+                #{{ tag.title }}
+            </h1>
+
+        </div>
+    </div>
+</div>
+{% endblock banner %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="columns is-mobile is-multiline">
+            {% for post in posts %}
+            <div class="column is-one-quarter">
+                <div class="box">
+                    {% if post.content.first.file.name|slice:"-3:" == 'jpg' or post.content.first.file.name|slice:"-3:" == 'png' or post.content.first.file.name|slice:"-4:" == 'jpeg' %}
+                    <figure class="image is-4by3">
+                        <a href="{{ post.get_absolute_url }}"><img src="{{ post.content.first.file.url }}"
+                                alt="Placeholder image">
+                        </a>
+                    </figure>
+                    {% else %}
+                    <a href="{{ post.get_absolute_url }}">
+                        <video width="640" controls="controls" preload="metadata">
+                            <source src="{{ post.content.first.file.url }}#t=0.5" type="video/mp4">
+                        </video>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,71 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="columns is-centered">
+  <div class="column is-4">
+    <div class="card">
+      <div class="card-content">
+        <form action="" enctype="multipart/form-data" method="post">
+          <h3 class="title is-3 has-text-centered">Edit Profile</h3>
+          {% csrf_token %}
+          <div class="field">
+            <label class="label is-5">Choose a picture</label>
+            <div class="file is-boxed">
+              {{ form.picture}}
+            </div>
+          </div>
+          <div class="field">
+            <label class="label is-5">First name</label>
+            <div class="control">
+              {{ form.first_name}}
+            </div>
+          </div>
+          <div class="field">
+            <label class="label is-5">Last name</label>
+            <div class="control">
+              {{ form.last_name}}
+            </div>
+          </div>
+          <div class="field">
+            <label class="label is-small">Location</label>
+            <div class="file is-boxed">
+              {{ form.location}}
+            </div>
+          </div>
+          <div class="field">
+            <label class="label is-5">Url</label>
+            <div class="control">
+              {{ form.url}}
+            </div>
+          </div>
+          <div class="field">
+            <label class="label is-5">Bio</label>
+            <div class="control">
+              {{ form.profile_info}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+            </div>
+          </div>
+          <div class="has-text-centered">
+
+            <div class="field">
+              <p class="control">
+                <button type="submit" value="login" class="button is-info my-5">
+                  Update
+                </button>
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

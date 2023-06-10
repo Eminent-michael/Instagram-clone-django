@@ -1,0 +1,130 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <title>instagram</title>
+</head>
+
+<body>
+    <!-- header start -->
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+                <img src="{% static 'image/logo.png' %}" alt="instagram image">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{% url 'index' %}">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+
+                <a class="navbar-item">
+                    <i class="far fa-compass"></i>
+                    Explore
+                </a>
+
+                <a href="{% url 'show_notifications' %}" class="navbar-item">
+                    <i class="fas fa-bell"></i>
+                    Notification
+                    {% if count_notifications %}
+                    <span class="badge">{{ count_notifications }}</span>
+                    {% endif %}
+                </a>
+
+                <a href="{% url 'inbox' %}" class="navbar-item">
+                    <i class="fas fa-inbox"></i>
+                    Inbox
+                    {% if direct_counts %}
+                    <span class="badge">{{ direct_counts}}</span>
+                    {% endif %}
+                </a>
+
+                <a class="navbar-item" href="{% url 'profile' request.user.username%}">
+                    <i class="fas fa-user-circle"></i>
+                    Profile -<strong>{{request.user}}</strong>
+                </a>
+
+                <a href="{% url 'newpost' %}" class="navbar-item">
+                    <i class="fas fa-upload"></i>
+                    New Post
+                </a>
+
+                <a href="{% url 'newstory' %}" class="navbar-item">
+                    <i class="fas fa-upload"></i>
+                    New Story
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Settings
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            Change password
+                        </a>
+                        <a class="navbar-item">
+                            Contact
+                        </a>
+                        <a class="navbar-item">
+                            Report an issue
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="{% url 'logout' %}">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- header end -->
+
+    {% block banner %}
+    
+    {% endblock banner %}
+
+    <section class="section">
+        <div class="container">
+        
+            {% block content %}
+            
+            {% endblock content %}
+
+            {% block pagination %}
+            
+            {% endblock pagination %}
+
+        </div>
+    </section>
+
+
+<script src="{% static 'js/all.js' %}"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/ajax.js' %}"></script>
+</body>
+
+</html>

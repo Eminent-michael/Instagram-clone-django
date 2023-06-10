@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-4">
+        <div class="card">
+            <div class="card-content">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <h3 class="title is-3 has-text-centered">New Story</h3>
+                    {%csrf_token%}
+                    <div class="field">
+                        <label class="label is-medium">Picture</label>
+                        <p class="control">
+                            {{ form.content }}
+                        </p>
+                    </div>
+                    <div class="field">
+                        <label class="label is-medium">Caption</label>
+                        <p class="control">
+                            {{ form.caption}}
+                        </p>
+                    </div>
+                    <div>
+                        <div class="field">
+                            <p class="control">
+                                <button type="submit" class="button is-info my-5">
+                                    Create
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="field has-addons is-centered">
+    <form method="GET" class="is-flex">
+        <div class="control">
+            <input class="input" name="q" type="text" placeholder="Search username...." value="{{ request.GET.q}}">
+        </div>
+        <div class="control">
+            <button type="submit" class="button is-info">
+                Search
+            </button>
+        </div>
+    </form>
+</div>
+<br>
+
+{% for user in users %}
+<div class="columns is-one-quarter">
+    <div class="box">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-64x64">
+                    <img src="{{ user.profile.imageurl }}" alt="Image">
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <strong>{{ user.profile.first_name }} {{ user.profile.last_name}}</strong> <small>@{{ user.username}}</small>
+                    </p>
+                    <a href="{% url 'newconversation' user.username %}" class="button is-info">Send message</a>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}
